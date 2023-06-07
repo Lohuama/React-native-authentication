@@ -9,38 +9,45 @@ import {
 } from "react-native";
 import { AuthContext } from "../context/AuthContext";
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const val = useContext(AuthContext);
+
+  const { register } = useContext(AuthContext);
   return (
     <View style={style.container}>
       <View>
-      <Text>{val}</Text>
-      <TextInput 
-            style={style.input} 
-            value={email}
-            placeholder="Enter name"
-            onChange={text => setName(text)}
+        <TextInput
+          style={style.input}
+          value={name}
+          placeholder="Enter name"
+          onChangeText={(text) => setName(text)}
         />
-        <TextInput 
-            style={style.input} 
-            value={email}
-            placeholder="Enter email"
-            onChange={text => setEmail(text)}
+
+        <TextInput
+          style={style.input}
+          value={email}
+          placeholder="Enter email"
+          onChangeText={(text) => setEmail(text)}
         />
+
         <TextInput
           style={style.input}
           value={password}
           placeholder="Enter password"
-          onChange={text => setPassword(text)}
+          onChange={(text) => setPassword(text)}
           secureTextEntry
         />
-        <Button title="Login"></Button>
+        <Button
+          title="Register"
+          onPress={() => {
+            register(name, email, password);
+          }}
+        ></Button>
         <View style={{ flexDirection: "row", marginTop: 20 }}>
           <Text>Already have an account?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <Text style={style.link}>Login</Text>
           </TouchableOpacity>
         </View>

@@ -12,11 +12,9 @@ import { AuthContext } from "../context/AuthContext";
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const val = useContext(AuthContext);
   return (
     <View style={style.container}>
       <View>
-        <Text>{val}</Text>
         <TextInput 
             style={style.input} 
             value={email}
